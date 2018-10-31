@@ -5,7 +5,7 @@ from __future__ import unicode_literals, absolute_import
 import frappe
 from frappe import _
 from frappe.model.document import Document
-from frappe.utils import validate_email_add, get_fullname, strip_html
+from frappe.utils import validate_email_add, get_fullname, strip_html,cstr
 from frappe.model.db_schema import add_column
 from frappe.core.doctype.communication.comment import validate_comment, notify_mentions, update_comment_in_doc
 from frappe.core.doctype.communication.email import validate_email, notify, _notify, update_parent_status
@@ -18,6 +18,11 @@ class Communication(Document):
 	"""Communication represents an external communication like Email."""
 
 	def validate(self):
+		if self.content:
+			content=cstr(self.content)
+			if len(content)>60:
+				frappe.throw(" Comment should be less than 60 characters")
+		
 		if self.reference_doctype and self.reference_name:
 			if not self.reference_owner:
 				self.reference_owner = frappe.db.get_value(self.reference_doctype, self.reference_name, "owner")
