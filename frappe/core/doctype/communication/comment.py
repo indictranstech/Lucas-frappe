@@ -21,7 +21,7 @@ def validate_comment(doc):
 			and reference_name=%(reference_name)s""",
 		{"reference_doctype": doc.reference_doctype, "reference_name": doc.reference_name})[0][0]
 
-	if comment_count >= 50:
+	if comment_count >= 100:
 		frappe.throw(_("Cannot add more than 50 comments"))
 
 def on_trash(doc):
