@@ -5,7 +5,7 @@ from __future__ import unicode_literals, absolute_import
 import frappe
 from frappe import _
 from frappe.model.document import Document
-from frappe.utils import validate_email_add, get_fullname, strip_html
+from frappe.utils import validate_email_add, get_fullname, strip_html,cstr
 from frappe.model.db_schema import add_column
 from frappe.core.doctype.communication.comment import validate_comment, notify_mentions, update_comment_in_doc
 from frappe.core.doctype.communication.email import validate_email, notify, _notify, update_parent_status
