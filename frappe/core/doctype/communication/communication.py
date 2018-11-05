@@ -18,11 +18,6 @@ class Communication(Document):
 	"""Communication represents an external communication like Email."""
 
 	def validate(self):
-		if self.content:
-			content=cstr(self.content)
-			if len(content)>60:
-				frappe.throw(" Comment should be less than 60 characters")
-		
 		if self.reference_doctype and self.reference_name:
 			if not self.reference_owner:
 				self.reference_owner = frappe.db.get_value(self.reference_doctype, self.reference_name, "owner")
